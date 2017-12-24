@@ -45,7 +45,8 @@ if that thing is an element of the list.
 It's usually called as an infix function
 because it's easier to read that way.
 -----------
+also you can define the list range like this
+[1..20], ['K'..'Z'] or [2,4..,20]
 
------------
 
 --}
