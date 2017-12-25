@@ -7,6 +7,8 @@ length' xs = sum[1 | _ <- xs]
 removeLowerCase st = [c | c <- st, c `elem` ['A'..'Z']]
 removeUpperCase xs = [x | x <- xs, x `elem` ['a'..'z']]
 findEven xss = [ [x | x <- xs, even x] | xs <- xss ]
+triangle = [ (x,y,z) | x <- [1..10], y <- [1..x], z <- [1..10], (x^2)+(y^2)==(z^2)]
+
 
 {--
 
@@ -62,7 +64,21 @@ fst takes a pair and returns its first component.
 snd takes a pair and returns its second component.
 -----------
 zip can take two lists that contain different types and zip them up.
------------
 
+            ----------------------
+Types
+
+Int stands for integer. Int is 2147483647 and the minimum is -2147483648.
+-----------
+Integer stands for, er … also integer. Int, however, is more efficient.
+-----------
+Float is a real floating point with single precision.
+-----------
+Double is a real floating point with double the precision!
+-----------
+Bool is a boolean type. It can have only two values: True and False.
+-----------
+Char represents a character. It's denoted by single quotes.
+A list of characters is a string.
 
 --}
