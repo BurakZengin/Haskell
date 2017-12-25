@@ -15,55 +15,105 @@ triangle = [ (x,y,z) | x <- [1..10], y <- [1..x], z <- [1..10], (x^2)+(y^2)==(z^
 List Function
 
 head takes a list and returns its head.
-The head of a list is basically its first element.
+ghci> head [5,4,3,2,1]
+5
 -----------
 tail takes a list and returns its tail.
-In other words, it chops off a list's head.
+ghci> tail [5,4,3,2,1]
+[4,3,2,1]
 -----------
 last takes a list and returns its last element.
+ghci> last [5,4,3,2,1]
+1
 -----------
 init takes a list and returns everything except its last element.
+ghci> init [5,4,3,2,1]
+[5,4,3,2]
 -----------
 length takes a list and returns its length, obviously.
+ghci> length [5,4,3,2,1]
+5
 -----------
 null checks if a list is empty.
-If it is, it returns True, otherwise it returns False.
-Use this function instead of
-xs == [] (if you have a list called xs)
+ghci> null [1,2,3]
+False
+ghci> null []
+True
 -----------
 reverse reverses a list.
+ghci> reverse [5,4,3,2,1]
+[1,2,3,4,5]
 -----------
 take takes number and a list.
-It extracts that many elements from the beginning of the list.
+ghci> take 3 [5,4,3,2,1]
+[5,4,3]
+ghci> take 1 [3,9,3]
+[3]
 -----------
-drop works in a similar way,
-only it drops the number of elements from the beginning of a list.
+drop only it drops the number of elements from the beginning of a list.
+ghci> drop 3 [8,4,2,1,5,6]
+[1,5,6]
+ghci> drop 0 [1,2,3,4]
+[1,2,3,4]
 -----------
-maximum takes a list of stuff that can be put in some
-kind of order and returns the biggest element.
+maximum returns biggest element.
+ghci> maximum [1,9,2,3,4]
+9
 -----------
 minimum returns the smallest.
+ghci> minimum [8,4,2,1,5,6]
+1
 -----------
 sum takes a list of numbers and returns their sum.
+ghci> sum [5,2,1,6,3,2,5,7]
+31
 -----------
 product takes a list of numbers and returns their product.
+ghci> product [6,2,1,2]
+24
 -----------
 elem takes a thing and a list of things and tells us
 if that thing is an element of the list.
-It's usually called as an infix function
-because it's easier to read that way.
+ghci> 4 `elem` [3,4,5,6]
+True
 -----------
 also you can define the list range like this
 [1..20], ['K'..'Z'] or [2,4..,20]
+-----------
+cycle takes a list and cycles it into an infinite list. If you just try to display the result,
+it will go on forever so you have to slice it off somewhere.
+ghci> take 10 (cycle [1,2,3])
+[1,2,3,1,2,3,1,2,3,1]
+-----------
+repeat takes an element and produces an infinite list of just that element.
+It's like cycling a list with only one element.
+ghci> take 10 (repeat 5)
+[5,5,5,5,5,5,5,5,5,5]
+-----------
+replicate function if you want some number of the same element in a list.
+ghci> take 10 (replicate 3 10)
+[10,10,10]
 
             ----------------------
 Tuples
 
 fst takes a pair and returns its first component.
+ghci> fst (8,11)
+8
+ghci> fst ("Wow", False)
+"Wow"
 -----------
 snd takes a pair and returns its second component.
+ghci> snd (8,11)
+11
+ghci> snd ("Wow", False)
+False
 -----------
 zip can take two lists that contain different types and zip them up.
+ghci> zip [1,2,3,4,5] [5,5,5,5,5]
+[(1,5),(2,5),(3,5),(4,5),(5,5)]
+ghci> zip [5,3,2,6,2,7,2,5,4,6,6] ["im","a","turtle"]
+[(5,"im"),(3,"a"),(2,"turtle")]
 
             ----------------------
 Types
@@ -71,14 +121,75 @@ Types
 Int stands for integer. Int is 2147483647 and the minimum is -2147483648.
 -----------
 Integer stands for, er … also integer. Int, however, is more efficient.
+factorial :: Integer -> Integer
+factorial n = product [1..n]
+ghci> factorial 50
+30414093201713378043612608166064768844377641568960512000000000000
 -----------
 Float is a real floating point with single precision.
+ghci> circumference 4.0
+25.132742
 -----------
 Double is a real floating point with double the precision!
+ghci> circumference' 4.0
+25.132741228718345
 -----------
 Bool is a boolean type. It can have only two values: True and False.
 -----------
 Char represents a character. It's denoted by single quotes.
 A list of characters is a string.
 
+            ----------------------
+Types Classes
+
+Eq is used for types that support equality testing.
+ghci> 5 == 5
+True
+ghci> 5 /= 5
+False
+-----------
+Ord is for types that have an ordering.
+ghci> "Abrakadabra" < "Zebra"
+True
+ghci> 5 >= 2
+True
+ghci> 5 `compare` 3
+GT
+-----------
+Members of Show can be presented as strings.
+ghci> show 5.334
+"5.334"
+ghci> show True
+"True"
+-----------
+The read function takes a string and returns a type which is a member of Read.
+ghci> read "8.2" + 3.8
+12.0
+ghci> read "5" :: Float
+5.0
+ghci> (read "5" :: Float) * 4
+20.0
+-----------
+Enum members are sequentially ordered types — they can be enumerated.
+ghci> ['a'..'e']
+"abcde"
+ghci> [3 .. 5]
+[3,4,5]
+-----------
+Bounded members have an upper and a lower bound.
+ghci> minBound :: Int
+-2147483648
+-----------
+Num is a numeric typeclass.
+Its members have the property of being able to act like numbers.
+Types in this class: (), Bool, Char, Ordering, Int, Integer, Float and Double.
+ghci> 20 :: Float
+20.0
+-----------
+Integral is also a numeric typeclass.
+Num includes all numbers, including real numbers and integral
+numbers, Integral includes only integral (whole) numbers.
+In this typeclass are Int and Integer.
+-----------
+Floating includes only floating point numbers, so Float and Double.
 --}
