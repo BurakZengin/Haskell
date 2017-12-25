@@ -3,25 +3,44 @@
 Fundamentals of Language
 
 
-{--
+## List Function
 
-List Function
+### head
 
 head takes a list and returns its head.
+
+```
 ghci> head [5,4,3,2,1]
 5
------------
+```
+
+### tail
+
 tail takes a list and returns its tail.
+
+```
 ghci> tail [5,4,3,2,1]
 [4,3,2,1]
------------
+```
+
+### last
+
 last takes a list and returns its last element.
+
+```
 ghci> last [5,4,3,2,1]
 1
------------
+```
+
+### init
+
 init takes a list and returns everything except its last element.
+
+```
 ghci> init [5,4,3,2,1]
 [5,4,3,2]
+```
+
 -----------
 length takes a list and returns its length, obviously.
 ghci> length [5,4,3,2,1]
