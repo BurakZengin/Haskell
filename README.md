@@ -175,6 +175,7 @@ ghci> take 10 (replicate 3 10)
 [10,10,10]
 ```
 
+
 ## Tuples
 
 ### fst
@@ -346,4 +347,3 @@ In this typeclass are Int and Integer.
 ### Floating
 
 Floating includes only floating point numbers, so Float and Double.
---}
