@@ -282,7 +282,7 @@ ghci> 5 `compare` 3
 GT
 ```
 
-### Members
+### Show
 
 Members of Show can be presented as strings.
 
